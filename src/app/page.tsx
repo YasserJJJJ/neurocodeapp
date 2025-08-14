@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -27,9 +28,9 @@ export default function NeuroCodeLandingMinimal(): React.ReactElement {
             </span>
           </div>
           <nav className="hidden md:flex items-center gap-7 text-sm">
-            <NavLink onClick={() => setComingSoon("E-books")} icon={<BookOpen className="h-4 w-4" />}>E-books</NavLink>
-            <NavLink onClick={() => setComingSoon("Courses")} icon={<GraduationCap className="h-4 w-4" />}>Courses</NavLink>
-            <NavLink onClick={() => setComingSoon("Our Products")} icon={<ShoppingBag className="h-4 w-4" />}>Our Products</NavLink>
+           <NavLink href="/ebooks" icon={<BookOpen className="h-4 w-4" />}>E-books</NavLink>
+           <NavLink href="/courses" icon={<GraduationCap className="h-4 w-4" />}>Courses</NavLink>
+           <NavLink href="/products" icon={<ShoppingBag className="h-4 w-4" />}>Our Products</NavLink>
           </nav>
           <button onClick={() => setShowBooking(true)} className={`inline-flex h-9 items-center rounded-xl px-4 text-sm text-white ${GRADIENT} shadow-sm hover:shadow-md`}>
             Contact us
@@ -104,18 +105,30 @@ export default function NeuroCodeLandingMinimal(): React.ReactElement {
   );
 }
 
-function NavLink(
-  props: { onClick: () => void; icon: React.ReactNode; children: React.ReactNode }
-): React.ReactElement {
+
+function NavLink({
+  href,
+  icon,
+  children,
+}: {
+  href: string;
+  icon?: React.ReactNode;
+  children: React.ReactNode;
+}): React.ReactElement {
   return (
-    <button onClick={onClick} className="flex items-center gap-1 relative transition duration-300 bg-transparent border-0 cursor-pointer">
+    <Link
+      href={href}
+      className="inline-flex items-center gap-1 relative transition duration-300 bg-transparent border-0 cursor-pointer"
+    >
       {icon}
-      <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-tr from-neutral-800 to-neutral-800 hover:from-purple-600 hover:via-pink-500 hover:to-orange-400 transition-colors duration-300">
+      <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-tr from-neutral-800 to-neutral-800 hover:from-violet-600 hover:via-pink-500 hover:to-orange-400 transition-colors duration-300">
         {children}
       </span>
-    </button>
+    </Link>
   );
 }
+
+
 
 function BookingModal({ onClose }: { onClose: () => void }): React.ReactElement {
 
