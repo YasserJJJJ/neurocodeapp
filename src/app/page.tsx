@@ -10,7 +10,7 @@ import {
 const GRADIENT = "bg-gradient-to-tr from-purple-600 via-pink-500 to-orange-400";
 const GRADIENT_TEXT = `${GRADIENT} bg-clip-text text-transparent`;
 
-export default function NeuroCodeLandingMinimal(): JSX.Element {
+export default function NeuroCodeLandingMinimal(): React.ReactElement {
   const [comingSoon, setComingSoon] = useState<string | null>(null);
   const [showBooking, setShowBooking] = useState<boolean>(false);
 
@@ -104,7 +104,9 @@ export default function NeuroCodeLandingMinimal(): JSX.Element {
   );
 }
 
-function NavLink({ onClick, icon, children }: { onClick: () => void; icon: React.ReactNode; children: React.ReactNode }) {
+function NavLink(
+  props: { onClick: () => void; icon: React.ReactNode; children: React.ReactNode }
+): React.ReactElement {
   return (
     <button onClick={onClick} className="flex items-center gap-1 relative transition duration-300 bg-transparent border-0 cursor-pointer">
       {icon}
@@ -115,7 +117,8 @@ function NavLink({ onClick, icon, children }: { onClick: () => void; icon: React
   );
 }
 
-function BookingModal({ onClose }: { onClose: () => void }) {
+function BookingModal({ onClose }: { onClose: () => void }): React.ReactElement {
+
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
